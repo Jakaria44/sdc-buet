@@ -1,12 +1,38 @@
 "use client"
-
+ 
 import { SoftwareClubForm } from "@/components/software-club-form"
 import { Navbar } from "@/components/ui/navbar"
 import { PointerHighlight } from "@/components/ui/pointer-highlight"
+import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
 import { motion } from "framer-motion"
 import { Code } from "lucide-react"
+import { useState } from "react"
+
 
 export default function FormPage() {
+  const [searchValue, setSearchValue] = useState("")
+  
+  const placeholders = [
+    "What's your favorite programming language?",
+    "Tell us about your dream project...",
+    "Which technology excites you the most?",
+    "What do you want to learn in the club?",
+    "Describe your coding journey so far...",
+    "What programming challenge interests you?",
+    "Share your development goals...",
+  ]
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // You can handle the search submission here if needed
+    // For now, we'll just scroll to the main form
+    document.getElementById('main-form')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       <div className="absolute inset-0 bg-grid-cyan/[0.03] bg-[size:60px_60px]" />
@@ -50,11 +76,15 @@ export default function FormPage() {
             Fill out the form below to become part of BUET's most vibrant software development community
           </motion.p> 
             <p className="text-cyan-300/80">
-              No prior experience required • Applications open year-
+              No prior experience required • Applications open year-round
             </p> 
         </motion.div>
 
-        <SoftwareClubForm />
+       
+
+        <div id="main-form">
+          <SoftwareClubForm />
+        </div>
       </div>
     </div>
   )

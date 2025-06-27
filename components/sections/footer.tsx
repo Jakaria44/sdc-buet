@@ -5,20 +5,36 @@ import { Code2, Mail, MapPin, Phone, Github, Facebook, Linkedin } from "lucide-r
 
 export function Footer() {
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, href: "#", label: "GitHub" },
-    { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
-    { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
+    { icon: <Github className="w-5 h-5" />, href: "https://github.com/buet-sdc", label: "GitHub" },
+    { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com/buet.sdc", label: "Facebook" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/company/buet-sdc", label: "LinkedIn" },
   ]
 
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Activities", href: "#activities" },
     { name: "Join Us", href: "#join" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "#footer" },
   ]
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    if (href.startsWith('#')) {
+      scrollToSection(href.substring(1))
+    } else {
+      window.open(href, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
-    <footer className="relative py-16 border-t border-cyan-500/20">
+    <footer id="footer" className="relative py-16 border-t border-cyan-500/20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -47,9 +63,10 @@ export function Footer() {
                 <motion.a
                   key={index}
                   href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-2 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-cyan-400 hover:border-cyan-400/40 transition-all duration-200"
+                  className="p-2 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-cyan-400 hover:border-cyan-400/40 transition-all duration-200 cursor-pointer"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -69,7 +86,11 @@ export function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-cyan-100/70 hover:text-cyan-400 transition-colors duration-200">
+                  <a 
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-cyan-100/70 hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
+                  >
                     {link.name}
                   </a>
                 </li>
@@ -92,11 +113,21 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3 text-cyan-100/70">
                 <Mail className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm">sdc@buet.ac.bd</span>
+                <a 
+                  href="mailto:sdc@buet.ac.bd"
+                  className="text-sm hover:text-cyan-400 transition-colors duration-200"
+                >
+                  sdc@buet.ac.bd
+                </a>
               </div>
               <div className="flex items-center space-x-3 text-cyan-100/70">
                 <Phone className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm">+880 1234 567890</span>
+                <a 
+                  href="tel:+8801234567890"
+                  className="text-sm hover:text-cyan-400 transition-colors duration-200"
+                >
+                  +880 1234 567890
+                </a>
               </div>
             </div>
           </motion.div>

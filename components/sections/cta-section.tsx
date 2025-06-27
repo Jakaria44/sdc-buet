@@ -7,6 +7,13 @@ import { CardSpotlight } from "@/components/ui/card-spotlight"
 import Link from "next/link"
 
 export function CTASection() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section id="join" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -61,6 +68,7 @@ export function CTASection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollToSection('footer')}
                   className="px-8 py-4 border border-cyan-500/30 text-cyan-100 rounded-xl hover:bg-cyan-500/10 transition-all duration-300"
                 >
                   Contact Us

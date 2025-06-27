@@ -17,6 +17,13 @@ export function EnhancedHeroSection() {
     { text: "Code", className: "text-cyan-400" },
   ]
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section id="home" className="relative min-h-screen overflow-hidden pt-16">
       <BackgroundBeamsWithCollision className="min-h-screen">
@@ -77,6 +84,7 @@ export function EnhancedHeroSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              onClick={() => scrollToSection('about')}
               className="px-8 py-4 border border-cyan-500/30 text-cyan-100 rounded-xl hover:bg-cyan-500/10 transition-all duration-300"
             >
               Learn More

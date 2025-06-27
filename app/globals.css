@@ -111,11 +111,11 @@
     transform: translateX(-100%);
   }
 }
-/*
+
 .animate-scroll {
   animation: scroll var(--animation-duration, 40s) linear infinite var(--animation-direction, forwards);
+  animation-delay: var(--animation-delay, 0s);
 }
- 
 /* Scroller mask */
 .scroller {
   mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
